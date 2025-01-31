@@ -1,0 +1,194 @@
+Main Idea of JavaScript
+  1. Save the data
+  2. Generate the HTML
+  3. Make it interactive
+  (MVC)
+
+
+(amazon.js)
+- Data structure = how we save the data (for example with arrays and objects)
+
+
+(amazon.html)
+<script></script
+ - The order of the script tags matters because we need to first load the products (products.js) and then loop through them and create the html (amazon.js)
+
+
+(amazon.js)
+- productsHTML += is the accumulator pattern
+
+
+Git
+- Version History = in the bottom left corner in "Timeline" you can see the history of the commits (filter by "Git History")
+
+
+Data Attribute
+- Just another HTML attribute
+- Allows us to attach any information to an element
+
+Syntac for a Data Attribute
+- Have to start with "data-"
+- Then give it any name (in kebab case --> with dashes)
+
+
+Dataset
+- The dataset property is a collection of all the data attributes on an element
+
+
+Modules
+- A better way to organize our code
+- Cannot have the same name for variables in different files (Naming Conflict). Modules can be used to avoid this.
+- Contains variables inside a JS file and then can be imported into another file
+
+Create a Module
+1. Create a file
+2. Don't load the file with <scrip>
+- Any variables we create inside the file, will be contained within the file
+
+Get a Variable Out of a File
+1. Add type="module" attribute
+2. Export
+3. Import
+- type="module" attribute --> let's this file get variables out of other files
+- Import --> needs to be at the top of the file
+- Need to use Live Server
+
+Benefits of Modules
+- Avoid naming conflicts
+- Don't have to worry about order of files
+- Better way to organize code
+
+Type="Module"
+- Is used in HTML files when the JS files have imports in them 
+
+
+Best Practice
+- Group related code together into its own file
+
+
+How to Create a Page with HTML?
+- <a href="thisfile.htm"></a>
+
+
+Normalizing/Deduplicating the Data
+- Using Ids to identify the elements without duplicating them
+
+
+Local Storage
+- Allows us to save data in the browser
+- Data is saved in the browser until we clear it
+- localStorage.setItem("key", JSON.stringify("value")) is used to save data
+- localStorage.getItem("key") is used to get data
+
+How to Clear Local Storage?
+- localStorage.removeItem("value") in the console
+- localStorage.clear() in the console
+
+LocalStorage <-> Console
+- If in the console there is an error but the code looks fine, just run localStorage.clear() in the console and then refresh the page
+- If the error is "[object, Object]", then this means that means data has been saved in the local storage without stringfiying it with JSON. Stringify localStorage data with JSON.stringify(data), then run localStorage.clear(), and then refresh the page
+
+ 
+External Libraries
+- Code that is outside of our project
+
+Why Use External Libraries?
+- Let us share code
+- Save time 
+- Avoid duplicating work
+
+DayJS External Library
+- DayJS is a library that allows us to work with dates
+
+Best Practice 
+- When we need to do something complicated, try to find an external library first 
+
+How to Find External Libraries?
+- Google "JavaScript Library" and then search for the library
+
+External Libraries + JavaScript Modules
+*ESM = ECMAScript Module
+- A version that works with JavaScript Modules
+
+Default Export
+- Another way of exporting
+- Can be used to export one thing
+- Each file can only have one default export 
+
+
+Recursion
+- A function that calls itself (re-runs)
+
+
+MVC
+- Model - View - Controller
+- Split our code in 3 parts
+1. Model = saves and manages the data
+2. View = takes the data and displays it on the page
+3. Controller = runs code when we interact with the page 
+
+
+Testing
+
+***Manual Testing: 
+- Easiest way to test code is to open the code in the website
+- Disadvantages: 
+  1. Hard to test every situtation
+  2. Hard to re-test 
+
+***Automated Testing:
+- Using code to test code
+- Test case: testing a particular situtation
+- How many test cases do we need?
+  - 2 Types of Test Cases:
+      1. Basic Test Cases
+        --> Tests if the code is working 
+      2. Edge Test Cases 
+        --> Test with values that are tricky 
+- Naming Cases:
+  - Describe what the test is doing
+  - Example: (the code or it) works with 0 
+- Test Suite:
+  - Grouping test cases together
+
+***Testing Framework (Jasmine):
+- External Library that helps us write tests easier 
+- Spec = Test 
+- Describe = Test Suite
+  -We can use in side describe() a further describe() to group related tests together.
+- It = Test Case
+- SpyOn = Mocks
+
+Best Practice
+- Test coverage:
+  - Test each condition of an if-statement
+  - How much of the code is being tested 
+  - (Try to maximaize the test coverage)
+
+Flaky Test 
+- Test that sometimes passes and sometimes fails
+
+Mocks
+- Lets us replace a method with a fake version
+- A mock only lasts for 1 test
+
+Unit Tests
+- Testing 1 piece of the code
+
+How to Create More Complicated Tests?
+- Integration Test 
+  - Tests many units/pieces of code working together
+
+Hook
+- Lets us run some code for each test
+- Helps to prevent duplication of code
+- Examples of Hooks in Jasmine:
+  *beforeEach = runs code before each test
+  *afterEach = runs code after each test
+  *beforeAll = runs code before all tests
+  *afterAll = runs code after all testsw
+
+  Process of Testing:
+  1. Make changes to code
+  2. Re-run the tests
+  3. Save to Git

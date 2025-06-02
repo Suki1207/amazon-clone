@@ -4,14 +4,17 @@
 
 // could rename cart to myCart like this: import {cart as myCart} from ...
 import { cart, addToCart } from "../data/cart.js";
-import { products } from "../data/products.js";
+import { products, loadProducts } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
 
-let productsHTML = "";
+loadProducts(renderProductsGrid);
 
-products.forEach((product) => {
-  //productsHTML += is the accumulator pattern
-  productsHTML += `
+function renderProductsGrid() {
+  let productsHTML = "";
+
+  products.forEach((product) => {
+    //productsHTML += is the accumulator pattern
+    productsHTML += `
     <div class="product-container">
             <div class="product-image-container">
               <img
@@ -65,31 +68,32 @@ products.forEach((product) => {
               product.id
             }">Add to Cart</button>
           </div>`;
-});
-
-// console.log(productsHTML);
-
-document.querySelector(".js-products-grid").innerHTML = productsHTML;
-
-function updateCartQuantity() {
-  // update the cart count
-  let cartQuantity = 0;
-
-  cart.forEach((cartItem) => {
-    cartQuantity += cartItem.quantity;
   });
 
-  document.querySelector(".js-cart-quantity").innerHTML = cartQuantity;
+  // console.log(productsHTML);
 
-  // console.log(cartQuantity);
-  // console.log(cart);
+  document.querySelector(".js-products-grid").innerHTML = productsHTML;
+
+  function updateCartQuantity() {
+    // update the cart count
+    let cartQuantity = 0;
+
+    cart.forEach((cartItem) => {
+      cartQuantity += cartItem.quantity;
+    });
+
+    document.querySelector(".js-cart-quantity").innerHTML = cartQuantity;
+
+    // console.log(cartQuantity);
+    // console.log(cart);
+  }
+
+  document.querySelectorAll(".js-add-to-cart").forEach((button) => {
+    button.addEventListener("click", () => {
+      // product-id has been converted to a camel case (productId)
+      const productId = button.dataset.productId;
+      addToCart(productId);
+      updateCartQuantity();
+    });
+  });
 }
-
-document.querySelectorAll(".js-add-to-cart").forEach((button) => {
-  button.addEventListener("click", () => {
-    // product-id has been converted to a camel case (productId)
-    const productId = button.dataset.productId;
-    addToCart(productId);
-    updateCartQuantity();
-  });
-});

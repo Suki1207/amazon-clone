@@ -1,7 +1,7 @@
 import { renderOrderSummary } from "../../scripts/checkout/orderSummary.js";
 import { loadFromStorage, cart } from "../../data/cart.js";
 
-import { loadProducts } from "../../data/products.js";
+import { loadProducts, loadProductsFetch } from "../../data/products.js";
 
 // 2 things to test:
 //   1. How the page looks
@@ -14,7 +14,7 @@ describe("Test Suite: RenderOrderSummary", () => {
 
   // for backend: to load products before running tests
   beforeAll((done) => {
-    loadProducts(() => {
+    loadProductsFetch().then(() => {
       done();
     });
   });
